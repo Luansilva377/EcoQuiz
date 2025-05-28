@@ -11,7 +11,7 @@ export function Modalidades() {
   const servidorCheio = document.getElementById("servidor-cheio");
  
   botaoSustentabilidade.addEventListener("click", function () {
-    websockat = new WebSocket("wss://ecoquiz-i7dh.onrender.com");
+    websockat = new WebSocket("wss://ecoquiz-backend2.onrender.com");
     QuizApi(ProcessamentoEnvioScoreServidor);
     ProcessamentoEnvioInformacoesServidor();
     websockat.onmessage = ReceberInformacoesParticipantes; // quando o servidor enviar uma mensagem vai chamer essa função e enviar a mensagem para todos do servidor(o onmessage é só para que consegamos chamar a função)
