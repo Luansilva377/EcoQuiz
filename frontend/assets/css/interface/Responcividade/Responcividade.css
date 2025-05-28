@@ -1,0 +1,27 @@
+@media(width < 600px ){
+    .User-Interface #username, .User-Interface #Entrar-sevidor, .User-Interface{
+        width: 100%;
+    }
+}
+@media(width< 600px){
+    .container .User-interface-criar-servidor{
+        width: 100dvw;
+        text-align: center;
+    }
+    .container .User-interface-criar-servidor .botoes-modalidade{
+        display: flex;
+        flex-direction: column;
+    }
+}
+@media(width < 850px){
+    .container .container-loob {
+        overflow-y: scroll;
+    }
+    .container .container-loob, .container .quiz-container{
+        width: 100dvw;
+        position: relative;
+    }
+    .container{
+        overflow: hidden;
+    }
+}
