@@ -29,7 +29,7 @@
     margin: auto;
     text-align: justify;
     padding: 20px;
-    border: 1px solid blue;
+    border: 1px solid #00ff44;
     scrollbar-width: none; 
     color: burlywood;
     text-align: justify;
@@ -55,7 +55,7 @@
     width: 50%;
   }
   .container .titulo-nome-plataforma {
-    color: blue;
+    color: #007e11;
     font-size: 40px;
     font-weight: 900;
     text-transform: uppercase;
