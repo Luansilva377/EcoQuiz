@@ -4,7 +4,7 @@ const { WebSocketServer } = require("ws");
 const MaxJogadores = 8;
 const wss = new WebSocketServer({ port: PORT });
 
-let tempo = 6 * 60; // 5 minutos (300 segundos)
+let tempo = 3 * 60; // 5 minutos (300 segundos)
 let jogadores = [];
 let intervalo = null;
 
@@ -39,7 +39,7 @@ function iniciarCronometro() {
         });
 
         jogadores = [];
-        tempo = 6 * 60; // Reinicia o tempo para próxima partida
+        tempo = 3 * 60; // Reinicia o tempo para próxima partida
         return;
       }
 
@@ -135,7 +135,7 @@ wss.on("connection", (ws) => {
         intervalo = null;// pausa o conometro quando tem menos de 2 jogadores
       }
       if (jogadores.length === 0) {
-        tempo = 6 * 60;
+        tempo = 3 * 60;
       }
     }
 
