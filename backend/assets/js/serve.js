@@ -4,7 +4,7 @@ const { WebSocketServer } = require("ws");
 const MaxJogadores = 8;
 const wss = new WebSocketServer({ port: PORT });
 
-let tempo = 3 * 60; // 5 minutos (300 segundos)
+let tempo = 6 * 60; // 5 minutos (300 segundos)
 let jogadores = [];
 let intervalo = null;
 
@@ -39,7 +39,7 @@ function iniciarCronometro() {
         });
 
         jogadores = [];
-        tempo = 3 * 60; // Reinicia o tempo para próxima partida
+        tempo = 6 * 60; // Reinicia o tempo para próxima partida
         return;
       }
 
@@ -67,6 +67,7 @@ wss.on("connection", (ws) => {
   }
 
   let user = null;
+  
 
   ws.on("message", (data) => {
     const dados = JSON.parse(data.toString()); // O WebSocket no Node.js recebe mensagens como um buffer, então você precisa converter o conteúdo para texto antes de exibir.
@@ -85,6 +86,7 @@ wss.on("connection", (ws) => {
       wss.clients.forEach(cliente => {
         if (cliente.readyState === cliente.OPEN) {
           cliente.send(listaAtualizada);// o servidor replica a mensagem para todos conectados
+          
         }
       });
 
@@ -135,7 +137,7 @@ wss.on("connection", (ws) => {
         intervalo = null;// pausa o conometro quando tem menos de 2 jogadores
       }
       if (jogadores.length === 0) {
-        tempo = 3 * 60;
+        tempo = 6 * 60;
       }
     }
 
