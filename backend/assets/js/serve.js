@@ -71,15 +71,38 @@ wss.on("connection", (ws) => {
 
   ws.on("message", (data) => {
     const dados = JSON.parse(data.toString()); // O WebSocket no Node.js recebe mensagens como um buffer, então você precisa converter o conteúdo para texto antes de exibir.
+    
+    
+    if (dados.tipo === "SomarPontos") {
+     
+     const jogador = jogadores.find(j => j.id === dados.id);
+     
+     if (jogador) {
+       
+       jogador.score += 10;
+       
+       
+       const listaAtualizada = JSON.stringify(jogadores);
+       wss.clients.forEach(cliente => {
+         if (cliente.readyState === cliente.OPEN) {
+           cliente.send(listaAtualizada);
+          
+        }
+      });
+    }
+    return;
+  }
 
-    // Atualiza quem está atacando
+  // Atualiza quem está atacando
     if (dados.tipo === "atacar") {
       const atacante = jogadores.find(j => j.id === dados.atacante.id);
       const alvo = jogadores.find(j => j.id === dados.alvo.id);
-
+      
       if (atacante && alvo) {
-        atacante.score = dados.atacante.score;
-        alvo.score = dados.alvo.score;
+      if (alvo.score >= 10 && atacante.score >= 5) {
+      atacante.score -= 5;
+      alvo.score -= 10;
+    }
       }
 
       const listaAtualizada = JSON.stringify(jogadores);
